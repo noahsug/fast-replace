@@ -1,7 +1,6 @@
 # fast-replace
-> recursively find and replace regexp in file globs
 
-fast-replace installs [ripgrep](https://github.com/BurntSushi/ripgrep) to find and replace regex at blazing fast speeds.
+fast-replace installs [ripgrep](https://github.com/BurntSushi/ripgrep) to recursively find and replace regex at blazing fast speeds
 
 ## Installation
 ```sh
