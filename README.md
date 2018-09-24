@@ -9,7 +9,7 @@ npm install -g fast-replace
 ```
 
 ## Examples
-Replace all occurrences of "foo" with "bar" recursively starting from the current directory:
+Replace all occurrences of `foo` with `bar` recursively starting from the current directory:
 ```
 fast-replace 'foo' 'bar'
 ```
@@ -19,7 +19,7 @@ Preview replacements without making any changes:
 fast-replace 'foo' 'bar' -D
 ```
 
-Replace occurrences in "mock.js" and files in the "tests/" directory:
+Replace occurrences in `mock.js` and files in the `tests/` directory:
 ```
 fast-replace 'foo' 'bar' mock.js tests/
 ```
@@ -29,7 +29,7 @@ Change snake_case to kebab-case:
 fast-replace '(\S)_(\S)' '$1-$2'
 ```
 
-Only include ".js" and ".jsx" files not found in "vendor/":
+Only include `.js` and `.jsx` files not found in `vendor/`:
 ```
 replace 'foo' 'bar' -g '*.js' '*.jsx' -G 'vendor/**'
 ```
