@@ -2,7 +2,7 @@
 > fast-replace installs [ripgrep](https://github.com/BurntSushi/ripgrep) to recursively find and replace regex at blazing fast speeds
 
 Features:
- * ~7x faster than other regex replacers (like [replace](https://www.npmjs.com/package/replace))
+ * ~12x faster than other regex replacers (like [replace](https://www.npmjs.com/package/replace))
  * recursive by default
  * respects `.gitignore` by default
  * matches file globs
