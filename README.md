@@ -1,7 +1,7 @@
 # fast-replace
 > recursively find and replace regexp in file globs
 
-fast-replace uses [ripgrep](https://github.com/BurntSushi/ripgrep) to find and replace a regexp expression at blazing fast speeds.
+fast-replace installs [ripgrep](https://github.com/BurntSushi/ripgrep) to find and replace regex at blazing fast speeds.
 
 ## Installation
 ```sh
@@ -26,7 +26,7 @@ fast-replace 'foo' 'bar' mock.js tests/
 
 Change snake_case to kebab-case:
 ```
-replace '(\S)_(\S)' '$1-$2'
+fast-replace '(\S)_(\S)' '$1-$2'
 ```
 
 Only include ".js" and ".jsx" files not found in "vendor/":
