@@ -1,7 +1,7 @@
 const fs = require('fs');
 const escapeStringRegexp = require('escape-string-regexp');
 
-const streamMatchingFiles = require('./streamMatchingFiles');
+const getMatchingFiles = require('./getMatchingFiles');
 const printReplacements = require('./printReplacements');
 
 function replace(file, from, to) {
@@ -51,10 +51,13 @@ module.exports = function fastReplace(from, to, options) {
 
   const resolving = [];
   if (!options.dryrun) {
-    resolving.push(streamMatchingFiles(rgArgs, file => replace(file, regex, to)));
+    resolving.push(getMatchingFiles(rgArgs));
   }
   if (!options.quiet) {
     resolving.push(printReplacements(rgArgs, to));
   }
-  return Promise.all(resolving);
+
+  return Promise.all(resolving).then(([files = []]) => {
+    files.forEach(file => replace(file, regex, to));
+  });
 };
