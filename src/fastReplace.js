@@ -57,7 +57,7 @@ module.exports = function fastReplace(from, to, options) {
     resolving.push(printReplacements(rgArgs, to));
   }
 
-  return Promise.all(resolving).then(([files = []]) => {
-    files.forEach(file => replace(file, regex, to));
+  return Promise.all(resolving).then(([files]) => {
+    (files || []).forEach(file => replace(file, regex, to));
   });
 };
