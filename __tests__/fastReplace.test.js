@@ -83,10 +83,11 @@ it('globs includes matching files', () => {
   return fastReplace('.*', '', {
     quiet: true,
     paths: ['mockDir'],
-    globs: ['*1'],
+    globs: ['*1', '*3'],
   }).then(() => {
     expect(fs.readFileSync('mockDir/f1', 'utf8')).toBe('');
     expect(fs.readFileSync('mockDir/f2', 'utf8')).toBe('Apple');
+    expect(fs.readFileSync('mockDir/f3', 'utf8')).toBe('');
   });
 });
 

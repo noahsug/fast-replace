@@ -39,7 +39,7 @@ function getRipgrepArgs(from, options = {}) {
     '--hidden', // include hidden files
     ignoreCase && '-i',
     fixedStrings && '-F',
-    allGlobs.length > 0 && ['-g', ...allGlobs],
+    ...allGlobs.map(g => ['-g', g]),
   ]
     .reduce(reduceFlatten, [])
     .filter(Boolean);
