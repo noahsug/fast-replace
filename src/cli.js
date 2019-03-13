@@ -50,4 +50,4 @@ argv = yargs
 
 const { from, to, ...options } = argv;
 
-fastReplace(from, to, options);
+fastReplace(from, to, options).catch(e => console.log(e));
