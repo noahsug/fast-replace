@@ -28,6 +28,7 @@ function getRipgrepArgs(from, options = {}) {
     fixedStrings,
     globs = [],
     ignoreGlobs = [],
+    ignoreLargeFiles,
   } = options;
 
   // ignore .git/ files
@@ -40,9 +41,10 @@ function getRipgrepArgs(from, options = {}) {
     from,
     ...paths,
     unrestricted && '-uu',
-    '--hidden', // include hidden files
+    '--hidden', // always include hidden files
     ignoreCase && '-i',
     fixedStrings && '-F',
+    ...(ignoreLargeFiles ? ['--max-filesize', '50K'] : []),
     ...allGlobs.map((g) => ['-g', g]),
   ]
     .reduce(reduceFlatten, [])

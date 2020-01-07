@@ -101,3 +101,22 @@ it('ignoreGlobs excludes matching files', () => {
     expect(fs.readFileSync('mockDir/f2', 'utf8')).toBe('');
   });
 });
+
+it('ignoreLargeFiles ignores files larger than 50KB in size', () => {
+  const largeFileContent = new Array(1024 * 50 + 2).join('9');
+  const smallFileContent = new Array(5).join('9');
+  testFs.create({
+    mockDir: {
+      f1: largeFileContent,
+      f2: smallFileContent,
+    },
+  });
+  return fastReplace('9', '1', {
+    quiet: true,
+    paths: ['mockDir'],
+    ignoreLargeFiles: true,
+  }).then(() => {
+    expect(fs.readFileSync('mockDir/f1', 'utf8')).toBe(largeFileContent);
+    expect(fs.readFileSync('mockDir/f2', 'utf8')).toBe('1111');
+  });
+});

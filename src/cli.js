@@ -46,6 +46,11 @@ const { argv } = yargs
       type: 'array',
       describe: `exclude files / directories matching the given glob`,
     },
+    ignoreLargeFiles: {
+      alias: 'L',
+      type: 'boolean',
+      describe: `Ignore files larger than 50KB in size`,
+    },
   })
   .help();
 

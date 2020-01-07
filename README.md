@@ -54,16 +54,19 @@ fast-replace <from> <to> [paths...]
   [paths...]          Directories or files to recursively search
 
 Options:
-  --dryrun, -D        Print replacements without making changes
-  --quiet, -q         Shhh, don't print anything
-  --unrestricted, -u  Don't respect .gitignore
-  --ignoreCase, -i    Search with case insensitively
-  --fixedStrings, -F  Treat pattern as a literal string instead of a regular
-                      expression
-  --globs, -g         Include files / directories matching the given globs
-  --ignoreGlobs, -G   Exclude files / directories matching the given globs
-  --version           Show version number
-  --help              Show help
+  --dryrun, -D            print replacements without making changes    [boolean]
+  --quiet, -q             shhh                                         [boolean]
+  --unrestricted, -u      don't respect .gitignore                     [boolean]
+  --ignoreCase, -i        search with case insensitively               [boolean]
+  --fixedStrings, -F      treat pattern as a literal string instead of a regular
+                          expression                                   [boolean]
+  --globs, -g             include files / directories matching the given glob
+                                                                         [array]
+  --ignoreGlobs, -G       exclude files / directories matching the given glob
+                                                                         [array]
+  --ignoreLargeFiles, -L  Ignore files larger than 50KB in size        [boolean]
+  --help                  Show help                                    [boolean]
+  --version               Show version number                          [boolean]
 ```
 
 ## API
