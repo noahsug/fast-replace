@@ -6,7 +6,7 @@ const rimraf = require('rimraf');
 let rootFiles = [];
 
 function recursiveCreate(fsObj, cwd = '') {
-  Object.keys(fsObj).forEach(dirOrFile => {
+  Object.keys(fsObj).forEach((dirOrFile) => {
     const content = fsObj[dirOrFile];
     const path = p.join(cwd, dirOrFile);
     if (typeof content === 'string') {
@@ -25,7 +25,7 @@ function create(fsObj) {
 }
 
 function reset() {
-  rootFiles.forEach(f => rimraf.sync(f));
+  rootFiles.forEach((f) => rimraf.sync(f));
   rootFiles = [];
 }
 

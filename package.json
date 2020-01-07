@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "jest",
-    "prettier": "prettier --write src/** __tests__/**"
+    "lint": "eslint --quiet . --ext=.js",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,20 @@
   "dependencies": {
     "escape-string-regexp": "^2.0.0",
     "node-ripgrep": "^0.6.0-patch.1",
-    "yargs": "^14.0.0"
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jest": "^23.3.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
     "jest": "^25.0.0",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "rimraf": "^3.0.0"
   },
   "jest": {

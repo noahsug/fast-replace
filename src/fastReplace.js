@@ -34,7 +34,7 @@ function getRipgrepArgs(from, options = {}) {
   if (!unrestricted) {
     ignoreGlobs.push('.git');
   }
-  const allGlobs = globs.concat(ignoreGlobs.map(g => '!' + g));
+  const allGlobs = globs.concat(ignoreGlobs.map((g) => `!${g}`));
 
   return [
     from,
@@ -43,7 +43,7 @@ function getRipgrepArgs(from, options = {}) {
     '--hidden', // include hidden files
     ignoreCase && '-i',
     fixedStrings && '-F',
-    ...allGlobs.map(g => ['-g', g]),
+    ...allGlobs.map((g) => ['-g', g]),
   ]
     .reduce(reduceFlatten, [])
     .filter(Boolean);
@@ -63,6 +63,6 @@ module.exports = function fastReplace(from, to, options) {
 
   return Promise.all(resolving).then(([files]) => {
     if (!Array.isArray(files)) return;
-    files.forEach(file => replace(file, regex, to));
+    files.forEach((file) => replace(file, regex, to));
   });
 };

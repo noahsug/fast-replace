@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb",
+    "prettier",
+  ],
+  "plugins": [
+    "jest",
+    "prettier",
+  ],
+  "env": {
+    "es6": true,
+    "jest/globals": true,
+    "node": true,
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-use-before-define": [
+      "error", {
+        "functions": false,
+        "classes": true,
+        "variables": true,
+      }
+    ],
+  }
+}

@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
 const yargs = require('yargs');
 
 const fastReplace = require('./fastReplace');
 
-const cliOptions = {};
-
-argv = yargs
+const { argv } = yargs
   .command('$0 <from> <to> [paths...]')
   .options({
     dryrun: {
@@ -46,8 +43,8 @@ argv = yargs
       describe: `exclude files / directories matching the given glob`,
     },
   })
-  .help().argv;
+  .help();
 
 const { from, to, ...options } = argv;
 
-fastReplace(from, to, options).catch(e => console.log(e));
+fastReplace(from, to, options).catch((e) => console.log(e));
