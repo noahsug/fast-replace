@@ -32,6 +32,7 @@
   "dependencies": {
     "escape-string-regexp": "^2.0.0",
     "node-ripgrep": "^0.6.0-patch.1",
+    "update-notifier": "^4.0.0",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
