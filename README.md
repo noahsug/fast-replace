@@ -12,6 +12,11 @@
 npm install -g fast-replace
 ```
 
+I recommend aliasing `fast-replace` to `fr` by adding the following to your shell profile:
+```
+alias fr="fast-replace"
+```
+
 ## Examples
 Replace all occurrences of `foo` with `bar` recursively starting from the current directory:
 ```

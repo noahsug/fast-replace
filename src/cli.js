@@ -6,7 +6,7 @@ const updateNotifier = require('update-notifier');
 const fastReplace = require('./fastReplace');
 const pkg = require('../package.json');
 
-updateNotifier({pkg}).notify();
+updateNotifier({ pkg }).notify();
 
 const { argv } = yargs
   .command('$0 <from> <to> [paths...]')
