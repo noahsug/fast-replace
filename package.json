@@ -1,6 +1,6 @@
 {
   "name": "fast-replace",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Super fast recursive regexp find and replacer",
   "main": "src/api.js",
   "bin": {
