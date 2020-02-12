@@ -49,8 +49,8 @@ replace 'foo' 'bar' -g '*.js' '*.jsx' -G 'vendor/**'
 fast-replace <from> <to> [paths...]
 
   <from>              Regex pattern to match
-  <to>                String to replace matched pattern, use $1 to match regex
-                      groups
+  <to>                String to replace matched pattern, use $1, $2, etc to
+                      match regex groups
   [paths...]          Directories or files to recursively search
 
 Options:
