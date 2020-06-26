@@ -10,6 +10,7 @@ beforeEach(() => {
     f3: 'ignored',
     f4: `some 'quotes'`,
     '.gitignore': 'f3',
+    '.git/HEAD': 'ref: refs/heads/master',
   });
 });
 
