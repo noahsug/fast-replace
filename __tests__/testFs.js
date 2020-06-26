@@ -1,32 +1,34 @@
-const p = require('path');
+const path = require('path');
 const fs = require('fs');
-const { execSync } = require('child_process');
 const rimraf = require('rimraf');
+const mkdirp = require('mkdirp');
+const tmp = require('tmp');
 
-let rootFiles = [];
+const { name: root } = tmp.dirSync();
+const originalCwd = process.cwd();
 
-function recursiveCreate(fsObj, cwd = '') {
+function enter(fsObj) {
+  rimraf.sync(root);
+  mkdirp.sync(root);
+  process.chdir(root);
+  recursiveCreate(fsObj);
+}
+
+function exit() {
+  process.chdir(originalCwd);
+}
+
+function recursiveCreate(fsObj = {}, dir = '') {
   Object.keys(fsObj).forEach((dirOrFile) => {
     const content = fsObj[dirOrFile];
-    const path = p.join(cwd, dirOrFile);
+    const nextDir = path.join(dir, dirOrFile);
     if (typeof content === 'string') {
-      execSync(`mkdir -p ${p.dirname(path)}`);
-      fs.writeFileSync(path, content, 'utf8');
+      mkdirp.sync(path.dirname(nextDir));
+      fs.writeFileSync(nextDir, content);
     } else {
-      recursiveCreate(content, path);
+      recursiveCreate(content, nextDir);
     }
   });
 }
 
-function create(fsObj) {
-  reset();
-  rootFiles.push(...Object.keys(fsObj));
-  recursiveCreate(fsObj);
-}
-
-function reset() {
-  rootFiles.forEach((f) => rimraf.sync(f));
-  rootFiles = [];
-}
-
-module.exports = { create, reset };
+module.exports = { enter, exit, root };
