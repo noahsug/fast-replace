@@ -1,14 +1,5 @@
 const yargs = require('yargs');
 
-// Yargs interprets "'arg'" as "arg", so we need to re-escape nested strings.
-function fixQuotes(arg) {
-  const fixed = `'${arg}'`;
-  if (process.argv.includes(fixed)) {
-    return fixed;
-  }
-  return arg;
-}
-
 module.exports = function parseArgs() {
   const { argv } = yargs
     .command('$0 <from> <to> [paths...]', 'recursively find and replace regex', (cmd) => {
@@ -77,3 +68,12 @@ module.exports = function parseArgs() {
     options,
   };
 };
+
+// Yargs interprets "'arg'" as "arg", so we need to re-escape nested strings.
+function fixQuotes(arg) {
+  const fixed = `'${arg}'`;
+  if (process.argv.includes(fixed)) {
+    return fixed;
+  }
+  return arg;
+}

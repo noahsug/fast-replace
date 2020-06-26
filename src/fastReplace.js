@@ -1,55 +1,9 @@
 const fs = require('fs');
 const escapeStringRegexp = require('escape-string-regexp');
 
+const getRipgrepArgs = require('./getRipgrepArgs');
 const getMatchingFiles = require('./getMatchingFiles');
 const printReplacements = require('./printReplacements');
-
-function replace(file, from, to) {
-  const content = fs.readFileSync(file, 'utf8');
-  const newContent = content.replace(from, to);
-  fs.writeFileSync(file, newContent, 'utf8');
-}
-
-function getRegex(str, { ignoreCase, fixedStrings } = {}) {
-  const flags = ignoreCase ? 'gi' : 'g';
-  const regexStr = fixedStrings ? escapeStringRegexp(str) : str;
-  return new RegExp(regexStr, flags);
-}
-
-function reduceFlatten(arr, current) {
-  return arr.concat(current);
-}
-
-function getRipgrepArgs(from, options = {}) {
-  const {
-    paths = [],
-    unrestricted,
-    ignoreCase,
-    fixedStrings,
-    globs = [],
-    ignoreGlobs = [],
-    ignoreLargeFiles,
-  } = options;
-
-  // ignore .git/ files
-  if (!unrestricted) {
-    ignoreGlobs.push('.git');
-  }
-  const allGlobs = globs.concat(ignoreGlobs.map((g) => `!${g}`));
-
-  return [
-    from,
-    ...paths,
-    unrestricted && '-uu',
-    '--hidden', // always include hidden files
-    ignoreCase && '-i',
-    fixedStrings && '-F',
-    ...(ignoreLargeFiles ? ['--max-filesize', '50K'] : []),
-    ...allGlobs.map((g) => ['-g', g]),
-  ]
-    .reduce(reduceFlatten, [])
-    .filter(Boolean);
-}
 
 module.exports = function fastReplace(from, to, options) {
   const regex = getRegex(from, options);
@@ -68,3 +22,15 @@ module.exports = function fastReplace(from, to, options) {
     files.forEach((file) => replace(file, regex, to));
   });
 };
+
+function getRegex(str, { ignoreCase, fixedStrings } = {}) {
+  const flags = ignoreCase ? 'gi' : 'g';
+  const regexStr = fixedStrings ? escapeStringRegexp(str) : str;
+  return new RegExp(regexStr, flags);
+}
+
+function replace(file, from, to) {
+  const content = fs.readFileSync(file, 'utf8');
+  const newContent = content.replace(from, to);
+  fs.writeFileSync(file, newContent, 'utf8');
+}

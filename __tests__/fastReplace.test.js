@@ -19,6 +19,7 @@ afterEach(() => {
 
 it('finds and replaces text', async () => {
   await fastReplace('a', 'z', { quiet: true });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('bznznz');
   expect(fs.readFileSync('f2', 'utf8')).toBe('Apple');
 });
@@ -27,17 +28,20 @@ it('finds and replaces regex', async () => {
   await fastReplace('([A-Z])([a-z]+)e', 'e$2$1', {
     quiet: true,
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('banana');
   expect(fs.readFileSync('f2', 'utf8')).toBe('epplA');
 });
 
 it('searches hidden files by default', async () => {
   await fastReplace('f3', 'f1', { quiet: true });
+
   expect(fs.readFileSync('.gitignore', 'utf8')).toBe('f1');
 });
 
 it('respects .gitignore by default', async () => {
   await fastReplace('ignored', 'hi', { quiet: true });
+
   expect(fs.readFileSync('f3', 'utf8')).toBe('ignored');
 });
 
@@ -46,6 +50,7 @@ it('dryrun does not write changes', async () => {
     quiet: true,
     dryrun: true,
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('banana');
   expect(fs.readFileSync('f2', 'utf8')).toBe('Apple');
 });
@@ -55,6 +60,7 @@ it('ignoreCase ignores case', async () => {
     quiet: true,
     ignoreCase: true,
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('bzza');
   expect(fs.readFileSync('f2', 'utf8')).toBe('zple');
 });
@@ -64,6 +70,7 @@ it('fixedStrings treats pattern as literal string', async () => {
     quiet: true,
     fixedStrings: true,
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('banana');
 });
 
@@ -72,6 +79,7 @@ it('globs includes matching files', async () => {
     quiet: true,
     globs: ['*1', '*3'],
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('');
   expect(fs.readFileSync('f2', 'utf8')).toBe('Apple');
   expect(fs.readFileSync('f3', 'utf8')).toBe('');
@@ -82,6 +90,7 @@ it('ignoreGlobs excludes matching files', async () => {
     quiet: true,
     ignoreGlobs: ['*1'],
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe('banana');
   expect(fs.readFileSync('f2', 'utf8')).toBe('');
 });
@@ -93,10 +102,12 @@ it('ignoreLargeFiles ignores files larger than 50KB in size', async () => {
     f1: largeFileContent,
     f2: smallFileContent,
   });
+
   await fastReplace('9', '1', {
     quiet: true,
     ignoreLargeFiles: true,
   });
+
   expect(fs.readFileSync('f1', 'utf8')).toBe(largeFileContent);
   expect(fs.readFileSync('f2', 'utf8')).toBe('1111');
 });

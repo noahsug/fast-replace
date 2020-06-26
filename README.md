@@ -73,13 +73,5 @@ Options:
 ```js
 const fastReplace = require('fast-replace');
 
-fastReplace('from', 'to', {
-  quiet: true,
-  paths: ['dir', 'file'],
-  unrestricted: true,
-  ignoreCase: true,
-  fixedStrings: true,
-  globs: ['*.js', '*.jsx'],
-  ignoreGlobs: ['vendor/**'],
-}).then(...)
+fastReplace('from', 'to', options).then(...); // options match CLI options
 ```
