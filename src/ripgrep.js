@@ -1,4 +1,4 @@
-const { rgPath } = require('node-ripgrep');
+const { rgPath } = require('vscode-ripgrep');
 const { spawn } = require('child_process');
 
 module.exports = function ripgrep(args, options) {
