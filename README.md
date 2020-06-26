@@ -68,5 +68,5 @@ Options:
 ```js
 const fastReplace = require('fast-replace');
 
-fastReplace('from', 'to', { /* CLI options */ }).then(...);
+fastReplace('from', 'to', { /* options, matches CLI */ }).then(changedFiles => {});
 ```

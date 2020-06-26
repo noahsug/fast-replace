@@ -18,8 +18,10 @@ module.exports = function fastReplace(from, to, options) {
   }
 
   return Promise.all(resolving).then(([files]) => {
-    if (!Array.isArray(files)) return;
+    if (!Array.isArray(files)) return [];
+
     files.forEach((file) => replace(file, regex, to));
+    return files;
   });
 };
 
