@@ -1,7 +1,7 @@
 # fast-replace
-> fast-replace installs [ripgrep](https://github.com/BurntSushi/ripgrep) to recursively find and replace regex at blazing fast speeds
+> fast-replace recursively finds and replaces regex at blazing fast speeds
 
- * ~12x faster than other regex replacers (like [replace](https://www.npmjs.com/package/replace))
+ * ~12x faster than other replacers (uses [ripgrep](https://github.com/BurntSushi/ripgrep) under the hood)
  * recursive by default
  * respects `.gitignore` by default
  * matches file globs
@@ -18,24 +18,29 @@ Replace all occurrences of `foo` with `bar` recursively starting from the curren
 fast-replace 'foo' 'bar'
 ```
 
-Preview replacements without making any changes:
+Preview replacements without modifying any files:
 ```
 fast-replace 'foo' 'bar' -D
 ```
 
-Replace occurrences in `mock.js` and files in the `tests/` directory:
+Replace only in `mock.js` and the `tests/` directory:
 ```
 fast-replace 'foo' 'bar' mock.js tests/
 ```
 
-Change snake_case to kebab-case:
+Replace snake_case_words with kebob-case-words:
 ```
 fast-replace '(\S)_(\S)' '$1-$2'
 ```
 
-Only include `.js` and `.jsx` files not found in `vendor/`:
+Replace only in files with names matching `*.js` or `*.jsx`:
 ```
-replace 'foo' 'bar' -g '*.js' '*.jsx' -G 'vendor/**'
+fast-replace 'foo' 'bar' -g '*.js' '*.jsx'
+```
+
+Replace only in files *not* in the `vendors/` directory:
+```
+fast-replace 'foo' 'bar' -G 'vendors/**'
 ```
 
 ## Options
