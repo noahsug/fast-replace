@@ -1,5 +1,5 @@
 # fast-replace
-> fast-replace recursively finds and replaces regex at blazing fast speeds
+> fast-replace is a command line utility that recursively finds and replaces regex at blazing fast speeds
 
  * ~12x faster than other replacers (uses [ripgrep](https://github.com/BurntSushi/ripgrep) under the hood)
  * recursive by default
