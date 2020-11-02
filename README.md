@@ -55,7 +55,7 @@ fast-replace <from> <to> [paths...]
 
 Options:
   --dryrun, -D            print replacements without making changes    [boolean]
-  --quiet, -q             shhh                                         [boolean]
+  --quiet, -q             don't log to console                         [boolean]
   --unrestricted, -u      don't respect .gitignore                     [boolean]
   --ignoreCase, -i        search with case insensitively               [boolean]
   --fixedStrings, -F      treat pattern as a literal string instead of a regular
