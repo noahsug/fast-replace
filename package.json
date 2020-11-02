@@ -2,7 +2,7 @@
   "name": "fast-replace",
   "version": "3.0.4",
   "description": "Recursive find and replace command line utility",
-  "main": "src/fast-replace.js",
+  "main": "src/fastReplace.js",
   "bin": {
     "fast-replace": "src/cli.js"
   },
